@@ -1,5 +1,7 @@
 name: Calculate and Update README
 
+run-name: Calculate and Update README by @${{ github.actor }}
+
 on:
   workflow_dispatch:
     inputs:

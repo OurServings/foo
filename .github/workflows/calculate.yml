@@ -27,9 +27,9 @@ jobs:
         run: |
           total_initial_costs=0
           # loop over items
-          depreciable_item_name = "Men's socks"
-          depreciable_item_cost = "$10"
-          total_initial_costs = total_initial_costs + depreciable_item_cost
+          depreciable_item_name="Men's socks"
+          depreciable_item_cost="$10"
+          total_initial_costs=$(( total_initial_costs + depreciable_item_cost ))
           # end loop
           total_annual_depreciation=0
           # loop over items

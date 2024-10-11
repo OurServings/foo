@@ -34,10 +34,10 @@ jobs:
           total_annual_depreciation=0
           # loop over items
           depreciable_item_lifespan_in_years=1
-          depreciable_item_annual_depreciation = depreciable_item_cost / depreciable_item_lifespan_in_years
-          total_annual_depreciation = total_annual_depreciation + depreciable_item_annual_depreciation
+          depreciable_item_annual_depreciation=$(( depreciable_item_cost / depreciable_item_lifespan_in_years ))
+          total_annual_depreciation=$(( total_annual_depreciation + depreciable_item_annual_depreciation ))
           # end loop
-          daily_depreciation_cost = total_annual_depreciation / 360
+          daily_depreciation_cost=$(( total_annual_depreciation / 360 ))
           # result=$(( ${{ github.event.inputs.num1 }} + ${{ github.event.inputs.num2 }} ))
           result=daily_depreciation_cost
           echo "result=$result" >> $GITHUB_ENV

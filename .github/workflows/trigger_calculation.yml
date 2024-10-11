@@ -1,5 +1,7 @@
 name: Trigger Calculation
 
+run-name: Trigger the Calculation Action by @${{ github.actor }}
+
 on:
   push:
     branches:

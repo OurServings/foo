@@ -1,0 +1,33 @@
+name: Calculate and Update README
+
+on:
+  workflow_dispatch:
+    inputs:
+      num1:
+        description: 'First number'
+        required: true
+      num2:
+        description: 'Second number'
+        required: true
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Perform calculation
+        id: calculate
+        run: |
+          result=$(( ${{ github.event.inputs.num1 }} + ${{ github.event.inputs.num2 }} ))
+          echo "result=$result" >> $GITHUB_ENV
+
+      - name: Update README.md
+        run: |
+          echo "The result of ${{ github.event.inputs.num1 }} + ${{ github.event.inputs.num2 }} is ${{ env.result }}." > README.md
+          git config --local user.email "wvanheemstra@icloud.com"
+          git config --local user.name "Willem van Heemstra"
+          git add README.md
+          git commit -m "Update README with calculation result"
+          git push

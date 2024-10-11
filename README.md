@@ -1,1 +1,1 @@
-The result of 1 + 3 is 4.
+The daily depreciation cost of Men's socks is daily_depreciation_cost.

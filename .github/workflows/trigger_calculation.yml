@@ -1,0 +1,33 @@
+name: Trigger Calculation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Read parameters from file
+        id: read_params
+        run: |
+          echo "num1=$(jq -r '.num1' params.json)" >> $GITHUB_ENV
+          echo "num2=$(jq -r '.num2' params.json)" >> $GITHUB_ENV
+
+      - name: Trigger Calculation Action
+        uses: octokit/request-action@v2
+        with:
+          route: POST /repos/{owner}/{repo}/actions/workflows/calculate.yml/dispatches
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          inputs: |
+            {
+              "num1": "${{ env.num1 }}",
+              "num2": "${{ env.num2 }}"
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

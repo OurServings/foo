@@ -35,12 +35,14 @@ jobs:
           total_annual_depreciation = total_annual_depreciation + depreciable_item_annual_depreciation
           # end loop
           daily_depreciation_cost = total_annual_depreciation / 360
-          result=$(( ${{ github.event.inputs.num1 }} + ${{ github.event.inputs.num2 }} ))
+          # result=$(( ${{ github.event.inputs.num1 }} + ${{ github.event.inputs.num2 }} ))
+          result=daily_depreciation_cost
           echo "result=$result" >> $GITHUB_ENV
 
       - name: Update README.md
         run: |
-          echo "The result of ${{ github.event.inputs.num1 }} + ${{ github.event.inputs.num2 }} is ${{ env.result }}." > README.md
+          #echo "The result of ${{ github.event.inputs.num1 }} + ${{ github.event.inputs.num2 }} is ${{ env.result }}." > README.md
+          echo "The daily depreciation cost of ${{ depreciable_item_name }} is ${{ env.result }}." > README.md
           git config --local user.email "wvanheemstra@icloud.com"
           git config --local user.name "Willem van Heemstra"
           git add README.md

@@ -5,6 +5,9 @@ run-name: Calculate and Update README by @${{ github.actor }}
 on:
   workflow_dispatch:
     inputs:
+      depreciable_item_name:
+        description: 'Depreciable item name'
+        required: true
       num1:
         description: 'First number'
         required: true
@@ -42,7 +45,7 @@ jobs:
       - name: Update README.md
         run: |
           #echo "The result of ${{ github.event.inputs.num1 }} + ${{ github.event.inputs.num2 }} is ${{ env.result }}." > README.md
-          echo "The daily depreciation cost of ${{ depreciable_item_name }} is ${{ env.result }}." > README.md
+          echo "The daily depreciation cost of ${{ github.event.inputs.depreciable_item_name }} is ${{ env.result }}." > README.md
           git config --local user.email "wvanheemstra@icloud.com"
           git config --local user.name "Willem van Heemstra"
           git add README.md

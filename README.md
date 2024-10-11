@@ -1,4 +1,1 @@
-# Calculation Example
-
-This README will be updated with the calculation result.
-
+The result of 1 + 2 is 3.

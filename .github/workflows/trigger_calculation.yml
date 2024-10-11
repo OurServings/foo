@@ -26,7 +26,7 @@ jobs:
           route: POST /repos/{owner}/{repo}/actions/workflows/calculate.yml/dispatches
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
-          ref: "topic-branch"
+          ref: "main"
           inputs: |
             {
               "num1": "${{ env.num1 }}",

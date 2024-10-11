@@ -39,7 +39,8 @@ jobs:
           # end loop
           daily_depreciation_cost=$(( total_annual_depreciation / 360 ))
           # result=$(( ${{ github.event.inputs.num1 }} + ${{ github.event.inputs.num2 }} ))
-          result=$(( daily_depreciation_cost ))
+          # result=$(( daily_depreciation_cost ))
+          result=$(( depreciable_item_cost ))
           echo "result=$result" >> $GITHUB_ENV
 
       - name: Update README.md

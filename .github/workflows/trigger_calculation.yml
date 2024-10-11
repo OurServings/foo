@@ -17,6 +17,7 @@ jobs:
       - name: Read parameters from file
         id: read_params
         run: |
+          echo "depreciable_item_name=$(jq -r '.depreciable_item_name' params.json)" >> $GITHUB_ENV
           echo "num1=$(jq -r '.num1' params.json)" >> $GITHUB_ENV
           echo "num2=$(jq -r '.num2' params.json)" >> $GITHUB_ENV
 
@@ -29,6 +30,7 @@ jobs:
           ref: "main"
           inputs: |
             {
+              "depreciable_item_name": "${{ env.depreciable_item_name }}",
               "num1": "${{ env.num1 }}",
               "num2": "${{ env.num2 }}"
             }

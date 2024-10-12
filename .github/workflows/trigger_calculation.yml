@@ -17,7 +17,7 @@ jobs:
         run: |
           chmod +x .github/workflows/utils/read_params.sh
           depreciable_items=$(.github/workflows/utils/read_params.sh)
-          echo "depreciable_items_FOO=$depreciable_items" >> $GITHUB_ENV
+          echo "depreciable_items=$depreciable_items" >> $GITHUB_ENV
 
       - name: Trigger Calculation Action
         uses: octokit/request-action@v2.x
@@ -28,7 +28,7 @@ jobs:
           ref: "main"
           inputs: |
             {
-              "depreciable_items": ${{ env.depreciable_items }}
+              "depreciable_itemsFoo": ${{ env.depreciable_items }}
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

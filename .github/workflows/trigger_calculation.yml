@@ -25,6 +25,7 @@ jobs:
           route: POST /repos/{owner}/{repo}/actions/workflows/calculate.yml/dispatches
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
+          ref: "main"
           inputs: |
             {
               "depreciable_items": "${{ env.depreciable_items }}"

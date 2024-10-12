@@ -1,0 +1,17 @@
+name: Marvel Movies List
+
+on:
+  workflow_dispatch:
+    inputs:
+      First_Movie:
+        default: "Iron Man"
+      Second_Movie:
+        default: "The Incredible Hulk"
+jobs:
+  welcome-to-marvel:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "List of marvel movies"
+          echo "${{ github.event.inputs.First_Movie }}"
+          echo "${{ github.event.inputs.Second_Movie }}"

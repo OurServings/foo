@@ -1,0 +1,33 @@
+name: Trigger Calculation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Read parameters from file
+        id: read_params
+        run: |
+          chmod +x .github/workflows/utils/read_params.sh
+          depreciable_items=$(.github/workflows/utils/read_params.sh)
+          echo "depreciable_items=$depreciable_items" >> $GITHUB_ENV
+
+      - name: Trigger Calculation Action
+        uses: octokit/request-action@v2
+        with:
+          route: POST /repos/{owner}/{repo}/actions/workflows/calculate.yml/dispatches
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          inputs: |
+            {
+              "depreciable_items": "${{ env.depreciable_items }}"
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

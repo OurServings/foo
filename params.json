@@ -1,5 +1,9 @@
 {
-  "depreciable_item_name": "Men's socks",
-  "num1": "1",
-  "num2": "3"
+  "parameters": {
+    "depreciable_items": [
+      { "item_cost": "1", "item_lifespan": "2", "item_name": "Men's socks" },
+      { "item_cost": "3", "item_lifespan": "4", "item_name": "Men's shoes" },
+      { "item_cost": "5", "item_lifespan": "6", "item_name": "Men's shirts" }
+    ]
+  }
 }

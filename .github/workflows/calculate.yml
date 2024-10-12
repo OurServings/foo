@@ -1,0 +1,37 @@
+name: Calculate and Update README
+
+on:
+  workflow_dispatch:
+    inputs:
+      depreciable_items:
+        description: 'JSON string of depreciable items'
+        required: true
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Read depreciable items
+        id: read_items
+        run: |
+          echo "${{ github.event.inputs.depreciable_items }}" | jq -c '.depreciable_items[]' > items.json
+
+      - name: Calculate results
+        run: |
+          chmod +x .github/workflows/utils/calculate_items.sh
+          .github/workflows/utils/calculate_items.sh items.json results.txt
+
+      - name: Update README.md
+        run: |
+          cat results.txt >> README.md
+          git config --local user.email "wvanheemstra@icloud.com"
+          git config --local user.name "Willem van Heemstra"
+          git add README.md
+          git commit -m "Update README with calculation results"
+          git push

@@ -1,7 +1,7 @@
 { 
   "parameters": { 
     "depreciable_items":[
-      {}
+      { "item_cost": "1", "item_lifespan": "2", "item_name": "Men's socks" }
     ] 
   } 
 }

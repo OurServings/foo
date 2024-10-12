@@ -28,7 +28,7 @@ jobs:
           ref: "main"
           inputs: |
             {
-              "depreciable_items": "${{ env.depreciable_items }}"
+              "depreciable_items": ${{ env.depreciable_items }}
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

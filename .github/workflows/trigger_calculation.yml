@@ -20,7 +20,7 @@ jobs:
           echo "depreciable_items=$depreciable_items" >> $GITHUB_ENV
 
       - name: Trigger Calculation Action
-        uses: octokit/request-action@v2
+        uses: octokit/request-action@v2.x
         with:
           route: POST /repos/{owner}/{repo}/actions/workflows/calculate.yml/dispatches
           owner: ${{ github.repository_owner }}
